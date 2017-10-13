@@ -14,6 +14,7 @@ import { ChildComponent } from './container/child/child.component';
 // Plugin
 import { ChartsModule } from 'ng2-charts';
 import { ExchangeComponent } from './container/exchange/exchange.component';
+import { SidebarComponent } from './container/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ExchangeComponent } from './container/exchange/exchange.component';
     NavComponent,
     HomeComponent,
     ChildComponent,
-    ExchangeComponent
+    ExchangeComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
