@@ -11,7 +11,8 @@
 */
 
 .btn {
-    border: 0;
+    border: none !important;
+    outline: none !important;
 }
 
 .btn-maxw {

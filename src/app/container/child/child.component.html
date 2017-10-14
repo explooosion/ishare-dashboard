@@ -11,7 +11,7 @@
   <div class="card mb-3">
     <div class="card-header">
       <i class="fa fa-users"></i> 學童列表
-      <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">新增</button>
+      <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modelAddChild">新增</button>
     </div>
 
     <div class="card-body">
@@ -52,12 +52,13 @@
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" #modelAddChild id="modelAddChild" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title" id="exampleModalLabel">新增學童</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button #modelClose type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
           </button>
@@ -65,68 +66,60 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label class="control-label">姓名:</label>
-              <input type="text" class="form-control">
+              <label class="control-label">帳號:</label>
+              <input type="text" class="form-control" name="childusername" [(ngModel)]="childusername" required>
             </div>
             <div class="form-group">
-              <label class="control-label">性別:</label>
+              <label class="control-label">密碼:</label>
+              <input type="password" class="form-control" name="childpassword" [(ngModel)]="childpassword" required>
+            </div>
+            <div class="form-group">
+              <label class="control-label">確認密碼:</label>
+              <input type="password" class="form-control" name="childpasswordRe" [(ngModel)]="childpasswordRe" required>
+            </div>
+            <div class="form-group">
+              <label class="control-label">兌換代碼:</label>
+              <input type="text" class="form-control" name="childcode" [(ngModel)]="childcode" required>
+            </div>
+            <div class="form-group">
+              <label class="control-label">姓名:</label>
+              <input type="text" class="form-control" name="childname" [(ngModel)]="childname" required>
+            </div>
+            <div class="form-group">
+              <label class="control-label">性別（暫不填）:</label>
               <div class="form-check">
                 <label class="custom-control custom-radio">
-                  <input id="sex1" name="sex" type="radio" class="custom-control-input">
+                  <input name="childgender" type="radio" value="男生" class="custom-control-input" [ngModel]="childgender">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">男生</span>
                 </label>
                 <label class="custom-control custom-radio">
-                  <input id="sex2" name="sex" type="radio" class="custom-control-input">
+                  <input name="childgender" type="radio" value="女生" class="custom-control-input" [ngModel]="childgender">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">女生</span>
                 </label>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label">葷素:</label>
-              <div class="form-check">
-                <label class="custom-control custom-radio">
-                  <input id="meal1" name="meal" type="radio" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">葷食</span>
-                </label>
-                <label class="custom-control custom-radio">
-                  <input id="meal2" name="meal" type="radio" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">素食</span>
-                </label>
-              </div>
+              <label class="control-label">學號:</label>
+              <input type="text" class="form-control" name="childstudentid" [(ngModel)]="childstudentid" required>
             </div>
             <div class="form-group">
-              <label class="control-label">電話:</label>
-              <input type="tel" class="form-control">
-            </div>
-            <div class="form-group">
-              <label class="control-label">住址:</label>
-              <input type="text" class="form-control">
+              <label class="control-label">點數:</label>
+              <input type="number" class="form-control" name="childpoint" min="0" max="1000" [(ngModel)]="childpoint" required>
             </div>
             <div class="form-group">
               <label class="control-label">就讀學校:</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" name="childschool" [(ngModel)]="childschool" required>
             </div>
-            <div class="form-group">
-              <label class="control-label">監護人:</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label class="control-label">監護人手機:</label>
-              <input type="tel" class="form-control">
-            </div>
-            <div class="form-group">
-              <label class="control-label">備註:</label>
-              <textarea class="form-control"></textarea>
-            </div>
+
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary">儲存</button>
+          <swal #dialogSuccess title="新增成功" type="success"></swal>
+          <swal #dialogError title="資料錯誤，請重新確認" type="error"></swal>
+          <button type="button" class="btn btn-primary" (click)="userAddChild(modelAddChild);">儲存</button>
         </div>
       </div>
     </div>
