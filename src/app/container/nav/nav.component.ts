@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 declare let jquery: any;
 declare let $: any;
+
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -9,12 +11,27 @@ declare let $: any;
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  public sideActive: String = 'home';
+
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit() {
     this.scrollShow();
     this.scrollMove();
   }
+
+  /**
+   * 切換選單底色
+   *
+   * @param {any} e
+   * @memberof NavComponent
+   */
+  public sidebarActive(e: any) {
+    this.sideActive = e.srcElement.hash.replace('#/', '');
+  }
+
 
   public scrollShow() {
     $(document).scroll(function () {

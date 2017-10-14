@@ -15,7 +15,7 @@
         z-index: 1000;
         overflow-x: hidden;
         overflow-y: auto;
-        width: 250px;
+        width: 225px;
         background-color: #292B2C;
         border-right: 1px solid #eee;
     }
@@ -56,7 +56,11 @@
     font-family: FontAwesome;
     float: right;
     content: "\F107";
-    color: #464a4c;
+    color: #aaa;
+}
+
+.sidebar .nav-link-collapse.collapsed:hover:after {
+    content: "\F107";
 }
 
 .sidebar .nav-link-collapse.collapsed:after {
@@ -92,5 +96,5 @@
 }
 
 .sidebar-sub>li>a.active {
-    background-color: #464a4c;
+    color: #fff;
 }

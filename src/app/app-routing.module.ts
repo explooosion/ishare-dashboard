@@ -4,12 +4,21 @@ import { Routes, RouterModule } from '@angular/router';
 // Component
 import { HomeComponent } from './container/home/home.component';
 import { ChildComponent } from './container/child/child.component';
-import { ExchangeComponent } from './container/exchange/exchange.component';
+import { StoreComponent } from './container/store/store.component';
+import { RecordComponent } from './container/record/record.component';
+import { AccountComponent } from './container/account/account.component';
+import { TimerComponent } from './container/timer/timer.component';
+import { LogComponent } from './container/log/log.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'child', component: ChildComponent },
-  { path: 'exchange', component: ExchangeComponent },
+  { path: 'store', component: StoreComponent },
+  { path: 'record', component: RecordComponent },
+  { path: 'account', component: AccountComponent },
+  { path: 'timer', component: TimerComponent },
+  { path: 'log', component: LogComponent },
   { path: '**', component: HomeComponent }
 ];
 

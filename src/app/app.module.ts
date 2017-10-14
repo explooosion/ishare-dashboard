@@ -4,17 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
+// Plugin
+import { ChartsModule } from 'ng2-charts';
 
 // Component
 import { AppComponent } from './app.component';
 import { NavComponent } from './container/nav/nav.component';
 import { HomeComponent } from './container/home/home.component';
 import { ChildComponent } from './container/child/child.component';
-
-// Plugin
-import { ChartsModule } from 'ng2-charts';
-import { ExchangeComponent } from './container/exchange/exchange.component';
-import { SidebarComponent } from './container/sidebar/sidebar.component';
+import { StoreComponent } from './container/store/store.component';
+import { RecordComponent } from './container/record/record.component';
+import { AccountComponent } from './container/account/account.component';
+import { TimerComponent } from './container/timer/timer.component';
+import { LogComponent } from './container/log/log.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +24,11 @@ import { SidebarComponent } from './container/sidebar/sidebar.component';
     NavComponent,
     HomeComponent,
     ChildComponent,
-    ExchangeComponent,
-    SidebarComponent
+    StoreComponent,
+    RecordComponent,
+    AccountComponent,
+    TimerComponent,
+    LogComponent
   ],
   imports: [
     BrowserModule,
