@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Plugin
 import { ChartsModule } from 'ng2-charts';
+import { SweetAlert2Module } from '@toverux/ngsweetalert2';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 // Component
 import { AppComponent } from './app.component';
@@ -17,6 +19,7 @@ import { RecordComponent } from './container/record/record.component';
 import { AccountComponent } from './container/account/account.component';
 import { TimerComponent } from './container/timer/timer.component';
 import { LogComponent } from './container/log/log.component';
+import { LoginComponent } from './container/login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { LogComponent } from './container/log/log.component';
     RecordComponent,
     AccountComponent,
     TimerComponent,
-    LogComponent
+    LogComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,14 @@ import { LogComponent } from './container/log/log.component';
     FormsModule,
     HttpModule,
     JsonpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SweetAlert2Module.forRoot({
+      // buttonsStyling: false,
+      // customClass: 'modal-content',
+      // confirmButtonClass: 'btn btn-lg btn-primary',
+      // cancelButtonClass: 'btn btn-lg'
+    }),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
