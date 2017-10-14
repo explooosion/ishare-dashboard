@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecordService } from '../../service/record/record.service';
 
-declare let jquery: any;
-declare let $: any;
-declare let DataTable: any;
-
 @Component({
   selector: 'app-record',
   templateUrl: './record.component.html',
@@ -14,6 +10,7 @@ declare let DataTable: any;
 export class RecordComponent implements OnInit {
 
   public datas: any = [];
+  public page: number = 1;
 
   constructor(
     private recordService: RecordService
@@ -21,7 +18,6 @@ export class RecordComponent implements OnInit {
 
   ngOnInit() {
     this.recordList();
-    $('#dataTable').DataTable();
   }
 
   public async recordList() {
