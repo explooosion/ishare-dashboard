@@ -9,6 +9,7 @@ import { RecordComponent } from './container/record/record.component';
 import { AccountComponent } from './container/account/account.component';
 import { TimerComponent } from './container/timer/timer.component';
 import { LogComponent } from './container/log/log.component';
+import { LoginComponent } from './container/login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'account', component: AccountComponent },
   { path: 'timer', component: TimerComponent },
   { path: 'log', component: LogComponent },
+  { path: 'login', component: LoginComponent },
   { path: '**', component: HomeComponent }
 ];
 

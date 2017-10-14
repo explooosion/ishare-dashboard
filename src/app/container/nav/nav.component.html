@@ -6,7 +6,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <div class="sidebar">
+    <div *ngIf="this.isLogin" class="sidebar">
       <ul class="navbar-nav nav-pills flex-column">
         <li class="nav-item">
           <a class="nav-link" [ngClass]="{'active': 'home'==sideActive }" href="#" [routerLink]="['home']" (click)="sidebarActive($event)">
@@ -49,9 +49,11 @@
         </li>
       </ul>
     </div>
-    <!-- <form class="form-inline mt-2 mt-md-0 ">
-      <input class="form-control mr-sm-2 " type="text " placeholder="Search " aria-label="Search ">
-      <button class="btn btn-outline-success my-2 my-sm-0 " type="submit ">Search</button>
-    </form> -->
+    <form *ngIf="isLogin" class="form-inline ml-auto">
+      <!-- <input class="form-control mr-sm-2 " type="text" placeholder="Search" aria-label="Search"> -->
+      <label class="form-control bg-dark text-white">Hi, {{ isLogin.teachername }}</label>
+      <swal #dialogLogout title="確定要登出？" type="question" [options]="{ showCancelButton: 'true' }" (confirm)="logout()"></swal>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="dialogLogout.show()">登出</button>
+    </form>
   </div>
 </nav>

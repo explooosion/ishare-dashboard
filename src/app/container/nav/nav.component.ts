@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-
-declare let jquery: any;
-declare let $: any;
+import { Cookie } from 'ng2-cookies/ng2-cookies';
+import { SwalComponent } from '@toverux/ngsweetalert2';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +10,10 @@ declare let $: any;
 })
 export class NavComponent implements OnInit {
 
+  @ViewChild('dialogLogout') private swalDialogLogout: SwalComponent;
+
   public sideActive: String = 'home';
+  public isLogin: any = false;
 
   constructor(
     private router: Router,
@@ -19,17 +21,22 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     this.reloadRedirect();
-    this.scrollShow();
-    this.scrollMove();
   }
 
   /**
-   * 重整時重新載入首頁
+   * 權限檢查
    *
    * @memberof NavComponent
    */
   public reloadRedirect() {
-    this.router.navigate(["/home"]);
+    this.isLogin = JSON.parse(Cookie.get('dashboardLogin'));
+    if (!this.isLogin) {
+      this.router.navigate(["/login"]);
+    } else {
+
+      console.log(this.isLogin);
+      this.router.navigate(["/home"]);
+    }
   }
 
   /**
@@ -39,29 +46,29 @@ export class NavComponent implements OnInit {
    * @memberof NavComponent
    */
   public sidebarActive(e: any) {
+    this.checkLogin();
     this.sideActive = e.srcElement.hash.replace('#/', '');
   }
 
-
-  public scrollShow() {
-    $(document).scroll(function () {
-      var scrollDistance = $(this).scrollTop();
-      if (scrollDistance > 100) {
-        $('.scroll-to-top').fadeIn();
-      } else {
-        $('.scroll-to-top').fadeOut();
-      }
-    });
+  /**
+   * 檢查登入
+   */
+  public checkLogin() {
+    this.isLogin = JSON.parse(Cookie.get('dashboardLogin'));
+    if (!this.isLogin) {
+      this.router.navigate(["/login"]);
+    }
   }
 
-  public scrollMove() {
-    $(document).on('click', 'a.scroll-to-top', function (event) {
-      var $anchor = $(this);
-      $('html, body').stop().animate({
-        scrollTop: ($($anchor.attr('href')).offset().top)
-      }, 1000, 'easeInOutExpo');
-      event.preventDefault();
-    });
+
+  /**
+   * 登出
+   */
+  public logout() {
+    Cookie.delete('dashboardLogin');
+    this.isLogin = false;
+    this.router.navigate(['/login']);
+    // location.reload();
   }
 
 }
