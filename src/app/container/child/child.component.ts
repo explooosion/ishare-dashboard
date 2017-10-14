@@ -1,35 +1,31 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../service/user/user.service';
 
 @Component({
   selector: 'app-child',
   templateUrl: './child.component.html',
-  styleUrls: ['./child.component.css']
+  styleUrls: ['./child.component.css'],
+  providers: [UserService]
 })
 export class ChildComponent implements OnInit {
 
-  public meals: any = [
-    { name: 'Robby', age: 6 },
-    { name: 'asd', age: 8 },
-    { name: 'Robybtvrby', age: 14 },
-    { name: 'ukjyhrtge', age: 1 },
-    { name: '234treth', age: 4 },
-    { name: 'Robby', age: 6 },
-    { name: 'asd', age: 8 },
-    { name: 'Robybtvrby', age: 14 },
-    { name: 'ukjyhrtge', age: 1 },
-    { name: '234treth', age: 4 },
-    { name: 'Robby', age: 6 },
-    { name: 'asd', age: 8 },
-    { name: 'Robybtvrby', age: 14 },
-    { name: 'ukjyhrtge', age: 1 },
-    { name: '234treth', age: 4 }
-  ];
-  page: number = 1;
+  public datas: any = [];
+  public page: number = 1;
 
-
-  constructor() { }
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
+    this.userGetChild();
+  }
+
+  public async userGetChild() {
+    await this.userService.userGetChild().subscribe(
+      result => {
+        this.datas = result;
+        console.log(this.datas);
+      });
   }
 
 }

@@ -18,14 +18,22 @@
       <table class="table">
         <thead class="thead-default">
           <tr>
+            <th>帳號</th>
             <th>姓名</th>
-            <th>年齡</th>
+            <th>學號</th>
+            <th>點數</th>
+            <th>代號</th>
+            <th>就讀學校</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let meal of meals | paginate: { itemsPerPage: 10, currentPage: page }">
-            <td>{{meal.name}}</td>
-            <td>{{meal.age}}</td>
+          <tr *ngFor="let data of datas | paginate: { itemsPerPage: 10, currentPage: page }">
+            <td>{{data.childusername}}</td>
+            <td>{{data.childname}}</td>
+            <td>{{data.childstudentid}}</td>
+            <td>{{data.childpoint}}</td>
+            <td>{{data.childcode}}</td>
+            <td>{{data.childschool}}</td>
           </tr>
         </tbody>
       </table>

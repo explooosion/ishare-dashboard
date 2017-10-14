@@ -13,10 +13,23 @@ export class UserService {
   ) { }
 
   public userLogin(body: object) {
-    return this.http.post(this.api, body)
+    return this.http.post('/api/user/login', body)
       .map((res) => {
         return res.json() || {}
       });
   }
 
+  public userGetChild() {
+    return this.http.get('/api/child')
+      .map((res) => {
+        return res.json() || {}
+      });
+  }
+
+  public userGetStore() {
+    return this.http.get('/api/store')
+      .map((res) => {
+        return res.json() || {}
+      });
+  }
 }
