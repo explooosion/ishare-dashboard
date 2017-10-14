@@ -11,6 +11,7 @@ export class RecordComponent implements OnInit {
 
   public datas: any = [];
   public page: number = 1;
+  public isLoading: Boolean = true;
 
   constructor(
     private recordService: RecordService
@@ -23,6 +24,7 @@ export class RecordComponent implements OnInit {
   public async recordList() {
     await this.recordService.recordList().subscribe(
       result => {
+        this.isLoading = false;
         this.datas = result;
       }
     );

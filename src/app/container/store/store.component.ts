@@ -11,6 +11,7 @@ export class StoreComponent implements OnInit {
 
   public datas: any = [];
   public page: number = 1;
+  public isLoading: Boolean = true;
 
   constructor(
     private userService: UserService
@@ -23,6 +24,7 @@ export class StoreComponent implements OnInit {
   public async userGetChild() {
     await this.userService.userGetStore().subscribe(
       result => {
+        this.isLoading = false;
         this.datas = result;
         console.log(this.datas);
       });

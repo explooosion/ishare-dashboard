@@ -28,6 +28,11 @@
           </tr>
         </thead>
         <tbody>
+          <tr *ngIf="isLoading" class="text-center">
+            <td colspan="7">
+              <i class="fa fa-spinner fa-3x fa-spin"></i>
+            </td>
+          </tr>
           <tr *ngFor="let data of datas | paginate: { itemsPerPage: 10, currentPage: page }">
             <td>{{data.storeusername}}</td>
             <td>{{data.storename}}</td>
