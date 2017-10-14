@@ -30,11 +30,12 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-link-collapse collapsed " data-toggle="collapse" href="#collapseSystem" aria-expanded="false ">
+          <a class="nav-link nav-link-collapse collapsed" [ngClass]="{'active': 'account'==sideActive || 'timer'==sideActive }" data-toggle="collapse"
+            href="#collapseSystem" aria-expanded="false ">
             <i class="fa fa-fw fa-cog "></i> 系統參數</a>
           <ul class="sidebar-sub collapse" id="collapseSystem" aria-expanded="false">
             <li>
-              <a [ngClass]="{'active': 'account'==sideActive }" href="#" [routerLink]="['account']" (click)="sidebarActive($event)">系統帳號管理</a>
+              <a [ngClass]="{'active': 'account'==sideActive }" href="#" [routerLink]="['account']" (click)="sidebarActive($event)">系統帳戶管理</a>
             </li>
             <li>
               <a [ngClass]="{'active': 'timer'==sideActive }" href="#" [routerLink]="['timer']" (click)="sidebarActive($event)">時段管理</a>
