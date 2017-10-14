@@ -18,8 +18,18 @@ export class NavComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.reloadRedirect();
     this.scrollShow();
     this.scrollMove();
+  }
+
+  /**
+   * 重整時重新載入首頁
+   *
+   * @memberof NavComponent
+   */
+  public reloadRedirect() {
+    this.router.navigate(["/home"]);
   }
 
   /**

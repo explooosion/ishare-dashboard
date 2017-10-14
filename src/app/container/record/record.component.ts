@@ -13,7 +13,7 @@ declare let DataTable: any;
 })
 export class RecordComponent implements OnInit {
 
-  public datas: any;
+  public datas: any = [];
 
   constructor(
     private recordService: RecordService
@@ -27,8 +27,7 @@ export class RecordComponent implements OnInit {
   public async recordList() {
     await this.recordService.recordList().subscribe(
       result => {
-        console.log(result);
-        this.datas = result[0];
+        this.datas = result;
       }
     );
   }
