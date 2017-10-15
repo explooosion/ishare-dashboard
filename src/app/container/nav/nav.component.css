@@ -3,98 +3,98 @@
  */
 
 .sidebar {
-    position: relative;
+  position: relative;
 }
 
 @media screen and (min-width:768px) {
-    .sidebar {
-        position: fixed;
-        top: 54px;
-        bottom: 0;
-        left: 0;
-        z-index: 1000;
-        overflow-x: hidden;
-        overflow-y: auto;
-        width: 225px;
-        background-color: #292B2C;
-        border-right: 1px solid #eee;
-    }
+  .sidebar {
+    position: fixed;
+    top: 54px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: calc( 100vw / 12 * 1.9);
+    background-color: #292B2C;
+    border-right: 1px solid #eee;
+  }
 }
 
 
 /* Sidebar navigation */
 
 .sidebar {
-    padding-left: 0;
-    padding-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .sidebar .nav {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .sidebar .nav-item {
-    width: 100%;
+  width: 100%;
 }
 
 .sidebar .nav-item+.nav-item {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 .sidebar .nav-link {
-    padding: 1rem;
-    font-size: 16px;
-    color: hsla(0, 0%, 100%, .5);
-    border-radius: 0;
+  padding: 1rem;
+  font-size: 16px;
+  color: hsla(0, 0%, 100%, .5);
+  border-radius: 0;
 }
 
 .sidebar .nav-link:hover {
-    color: #fff;
+  color: #fff;
 }
 
 .sidebar .nav-link-collapse:after {
-    font-family: FontAwesome;
-    float: right;
-    content: "\F107";
-    color: #aaa;
+  font-family: FontAwesome;
+  float: right;
+  content: "\F107";
+  color: #aaa;
 }
 
 .sidebar .nav-link-collapse.collapsed:hover:after {
-    content: "\F107";
+  content: "\F107";
 }
 
 .sidebar .nav-link-collapse.collapsed:after {
-    content: "\F105";
+  content: "\F105";
 }
 
 .sidebar .nav-link.active {
-    background-color: #464a4c;
-    color: #fff;
+  background-color: #464a4c;
+  color: #fff;
 }
 
 .sidebar .nav-link i {
-    margin-right: 4px;
+  margin-right: 4px;
 }
 
 
 /* sidebar-second */
 
 .sidebar-sub {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .sidebar-sub>li>a {
-    display: block;
-    padding: 0.8rem 0rem 0.8rem 2.8rem;
-    color: #636c72;
-    font-size: 16px;
-    text-decoration: unset;
+  display: block;
+  padding: 0.8rem 0rem 0.8rem 2.8rem;
+  color: #636c72;
+  font-size: 16px;
+  text-decoration: unset;
 }
 
 .sidebar-sub>li>a:hover {
-    color: #fff;
+  color: #fff;
 }
 
 .sidebar-sub>li>a.active {
-    color: #fff;
+  color: #fff;
 }
