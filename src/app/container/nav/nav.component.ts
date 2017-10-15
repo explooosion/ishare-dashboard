@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { SwalComponent } from '@toverux/ngsweetalert2';
+import { CheckLoginService } from 'app/service/common/check-login.service';
 
 @Component({
   selector: 'app-nav',
@@ -17,6 +18,7 @@ export class NavComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private checkloginService: CheckLoginService
   ) { }
 
   ngOnInit() {
@@ -33,8 +35,6 @@ export class NavComponent implements OnInit {
     if (!this.isLogin) {
       this.router.navigate(["/login"]);
     } else {
-
-      console.log(this.isLogin);
       this.router.navigate(["/home"]);
     }
   }
@@ -46,20 +46,9 @@ export class NavComponent implements OnInit {
    * @memberof NavComponent
    */
   public sidebarActive(e: any) {
-    this.checkLogin();
+    this.checkloginService.checkLogin();
     this.sideActive = e.srcElement.hash.replace('#/', '');
   }
-
-  /**
-   * 檢查登入
-   */
-  public checkLogin() {
-    this.isLogin = JSON.parse(Cookie.get('dashboardLogin'));
-    if (!this.isLogin) {
-      this.router.navigate(["/login"]);
-    }
-  }
-
 
   /**
    * 登出
@@ -67,8 +56,7 @@ export class NavComponent implements OnInit {
   public logout() {
     Cookie.delete('dashboardLogin');
     this.isLogin = false;
-    this.router.navigate(['/login']);
-    // location.reload();
+    this.checkloginService.checkLogin();
   }
 
 }
