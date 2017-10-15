@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CheckLoginService } from 'app/service/common/check-login.service';
 
 @Component({
   selector: 'app-log',
@@ -26,9 +27,12 @@ export class LogComponent implements OnInit {
   ];
   page: number = 1;
 
-  constructor() { }
+  constructor(
+    private checkloginService: CheckLoginService
+  ) { }
 
   ngOnInit() {
+    this.checkloginService.checkLogin();
   }
 
 }

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 declare let jquery: any;
 declare let $: any;
@@ -12,10 +10,10 @@ declare let $: any;
 })
 export class AppComponent implements OnInit {
 
+  constructor() { }
+
   ngOnInit() {
 
-    console.log(JSON.parse(Cookie.get('dashboardLogin')));
-    
     this.scrollShow();
     this.scrollMove();
   }
@@ -40,4 +38,5 @@ export class AppComponent implements OnInit {
       event.preventDefault();
     });
   }
+
 }

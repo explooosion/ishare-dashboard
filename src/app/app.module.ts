@@ -9,6 +9,9 @@ import { ChartsModule } from 'ng2-charts';
 import { SweetAlert2Module } from '@toverux/ngsweetalert2';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+// Service
+import { CheckLoginService } from 'app/service/common/check-login.service';
+
 // Component
 import { AppComponent } from './app.component';
 import { NavComponent } from './container/nav/nav.component';
@@ -49,7 +52,8 @@ import { LoginComponent } from './container/login/login.component';
     }),
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [CheckLoginService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

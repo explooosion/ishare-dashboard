@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecordService } from '../../service/record/record.service';
+import { CheckLoginService } from 'app/service/common/check-login.service';
 
 @Component({
   selector: 'app-record',
@@ -14,10 +15,12 @@ export class RecordComponent implements OnInit {
   public isLoading: Boolean = true;
 
   constructor(
-    private recordService: RecordService
+    private recordService: RecordService,
+    private checkloginService: CheckLoginService
   ) { }
 
   ngOnInit() {
+    this.checkloginService.checkLogin();
     this.recordList();
   }
 

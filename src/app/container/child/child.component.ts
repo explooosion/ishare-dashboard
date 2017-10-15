@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { UserService } from '../../service/user/user.service';
 import { SwalComponent } from '@toverux/ngsweetalert2';
 
+import { CheckLoginService } from 'app/service/common/check-login.service';
+
 declare let jquery: any;
 declare let $: any;
 
@@ -34,10 +36,12 @@ export class ChildComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private checkloginService: CheckLoginService
   ) { }
 
   ngOnInit() {
+    this.checkloginService.checkLogin();
     this.userGetChild();
   }
 

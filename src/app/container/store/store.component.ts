@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../service/user/user.service';
+import { CheckLoginService } from 'app/service/common/check-login.service';
 
 @Component({
   selector: 'app-store',
@@ -14,10 +15,12 @@ export class StoreComponent implements OnInit {
   public isLoading: Boolean = true;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private checkloginService: CheckLoginService
   ) { }
 
   ngOnInit() {
+    this.checkloginService.checkLogin();
     this.userGetChild();
   }
 
