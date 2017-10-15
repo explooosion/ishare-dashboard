@@ -10,7 +10,7 @@
 
   <div class="card mb-3">
     <div class="card-header">
-      <i class="fa fa-users"></i> 店家列表
+      <i class="fa fa-users"></i> 店家列表 - 共 {{ datas.length }} 筆資料
       <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">新增</button>
     </div>
 
@@ -18,6 +18,7 @@
       <table class="table">
         <thead class="thead-default">
           <tr>
+            <th>#</th>
             <th>帳號</th>
             <th>店名</th>
             <th>地址</th>
@@ -33,7 +34,8 @@
               <i class="fa fa-spinner fa-3x fa-spin"></i>
             </td>
           </tr>
-          <tr *ngFor="let data of datas | paginate: { itemsPerPage: 10, currentPage: page }">
+          <tr *ngFor="let data of datas | paginate: { itemsPerPage: 10, currentPage: page } ; let i = index">
+            <th scope="row">{{ i + ( page - 1 ) * 10 + 1 }}</th>
             <td>{{data.storeusername}}</td>
             <td>{{data.storename}}</td>
             <td>{{data.storeaddr}}</td>
@@ -49,7 +51,7 @@
       </div>
     </div>
     <div class="card-footer small text-muted">
-      最後更新 早上 08:30
+      共 {{ datas.length }} 筆資料
     </div>
   </div>
 
