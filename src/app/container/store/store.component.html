@@ -11,7 +11,7 @@
   <div class="card mb-3">
     <div class="card-header">
       <i class="fa fa-users"></i> 店家列表 - 共 {{ datas.length }} 筆資料
-      <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">新增</button>
+      <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modelAddStore">新增</button>
     </div>
 
     <div class="card-body">
@@ -56,11 +56,11 @@
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modelAddStore" tabindex="-1" role="dialog" aria-labelledby="modelAddStoreLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLabel">新增學童</h4>
+          <h4 class="modal-title" id="modelAddStoreLabel">新增店家</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
@@ -69,68 +69,48 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label class="control-label">姓名:</label>
-              <input type="text" class="form-control">
+              <label class="control-label">帳號:</label>
+              <input type="text" class="form-control" name="storeusername" [(ngModel)]="storeusername" required>
             </div>
             <div class="form-group">
-              <label class="control-label">性別:</label>
-              <div class="form-check">
-                <label class="custom-control custom-radio">
-                  <input id="sex1" name="sex" type="radio" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">男生</span>
-                </label>
-                <label class="custom-control custom-radio">
-                  <input id="sex2" name="sex" type="radio" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">女生</span>
-                </label>
-              </div>
+              <label class="control-label">密碼:</label>
+              <input type="password" class="form-control" name="storepassword" [(ngModel)]="storepassword" required>
             </div>
             <div class="form-group">
-              <label class="control-label">葷素:</label>
-              <div class="form-check">
-                <label class="custom-control custom-radio">
-                  <input id="meal1" name="meal" type="radio" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">葷食</span>
-                </label>
-                <label class="custom-control custom-radio">
-                  <input id="meal2" name="meal" type="radio" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">素食</span>
-                </label>
-              </div>
+              <label class="control-label">確認密碼:</label>
+              <input type="password" class="form-control" name="storepasswordRe" [(ngModel)]="storepasswordRe" required>
+            </div>
+            <div class="form-group">
+              <label class="control-label">店名:</label>
+              <input type="text" class="form-control" name="storename" [(ngModel)]="storename" required>
+            </div>
+            <div class="form-group">
+              <label class="control-label">地址:</label>
+              <input type="text" class="form-control" name="storeaddr" [(ngModel)]="storeaddr" required>
+            </div>
+            <div class="form-group">
+              <label class="control-label">店長:</label>
+              <input type="text" class="form-control" name="storeadminstore" [(ngModel)]="storeadminstore" required>
             </div>
             <div class="form-group">
               <label class="control-label">電話:</label>
-              <input type="tel" class="form-control">
+              <input type="text" class="form-control" name="storetel" [(ngModel)]="storetel" required>
             </div>
             <div class="form-group">
-              <label class="control-label">住址:</label>
-              <input type="text" class="form-control">
+              <label class="control-label">統一編號:</label>
+              <input type="text" class="form-control" name="storeein" [(ngModel)]="storeein" required>
             </div>
             <div class="form-group">
-              <label class="control-label">就讀學校:</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label class="control-label">監護人:</label>
-              <input type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label class="control-label">監護人手機:</label>
-              <input type="tel" class="form-control">
-            </div>
-            <div class="form-group">
-              <label class="control-label">備註:</label>
-              <textarea class="form-control"></textarea>
+              <label class="control-label">店家類型:</label>
+              <input type="text" class="form-control" name="storetype" [(ngModel)]="storetype" required>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary">儲存</button>
+          <swal #dialogSuccess title="新增成功" type="success"></swal>
+          <swal #dialogError title="資料錯誤，請重新確認" type="error"></swal>
+          <button type="button" class="btn btn-primary" (click)="userAddStore(modelAddStore);">儲存</button>
         </div>
       </div>
     </div>

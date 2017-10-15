@@ -47,7 +47,6 @@ export class UserService {
   public userAddChild(body: object) {
     return this.http.post('/api/child/add', body)
       .map((res) => {
-        console.log(res);
         return res.json() || {}
       });
   }
@@ -64,4 +63,20 @@ export class UserService {
         return res.json() || {}
       });
   }
+
+  /**
+   * 店家資料新增
+   *
+   * @param {object} body
+   * @returns
+   * @memberof UserService
+   */
+  public userAddStore(body: object) {
+    return this.http.post('/api/store/add', body)
+      .map((res) => {
+        console.log(res);
+        return res.json() || {}
+      });
+  }
+
 }
