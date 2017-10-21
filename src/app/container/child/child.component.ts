@@ -3,10 +3,8 @@ import { Router } from '@angular/router';
 import { UserService } from '../../service/user/user.service';
 import { SwalComponent } from '@toverux/ngsweetalert2';
 
+import { Child } from '../../class/user/child';
 import { CheckLoginService } from 'app/service/common/check-login.service';
-
-declare let jquery: any;
-declare let $: any;
 
 @Component({
   selector: 'app-child',
@@ -21,6 +19,8 @@ export class ChildComponent implements OnInit {
   @ViewChild('dialogSuccess') private swalDialogSuccess: SwalComponent;
 
   public datas: any = [];
+  public data: Child = new Child();
+
   public page: number = 1;
   public isLoading: Boolean = true;
 
