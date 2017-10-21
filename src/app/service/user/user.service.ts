@@ -52,6 +52,34 @@ export class UserService {
   }
 
   /**
+   * 學童資料更新
+   *
+   * @param {object} body
+   * @returns
+   * @memberof UserService
+   */
+  public userUpdateChild(body: object) {
+    return this.http.post('/api/child/update', body)
+      .map((res) => {
+        return res.json() || {}
+      });
+  }
+
+  /**
+   * 學童資料刪除
+   *
+   * @param {object} body
+   * @returns
+   * @memberof UserService
+   */
+  public userDeleteChild(body: object) {
+    return this.http.post('/api/child/delete', body)
+      .map((res) => {
+        return res.json() || {}
+      });
+  }
+
+  /**
    * 店家資料取得
    *
    * @returns
@@ -75,6 +103,34 @@ export class UserService {
     return this.http.post('/api/store/add', body)
       .map((res) => {
         console.log(res);
+        return res.json() || {}
+      });
+  }
+
+  /**
+   * 店家資料更新
+   *
+   * @param {object} body
+   * @returns
+   * @memberof UserService
+   */
+  public userUpdateStore(body: object) {
+    return this.http.post('/api/store/update', body)
+      .map((res) => {
+        return res.json() || {}
+      });
+  }
+
+  /**
+   * 店家資料刪除
+   *
+   * @param {object} body
+   * @returns
+   * @memberof UserService
+   */
+  public userDeleteStore(body: object) {
+    return this.http.post('/api/store/delete', body)
+      .map((res) => {
         return res.json() || {}
       });
   }

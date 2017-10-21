@@ -1,4 +1,6 @@
 export class Child {
+
+  public id: Number = 0;
   public childusername: String = '';
   public childpassword: String = '';
   public childpasswordRe: String = '';
@@ -11,3 +13,4 @@ export class Child {
 
   constructor() { }
 }
+
