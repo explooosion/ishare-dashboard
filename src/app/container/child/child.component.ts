@@ -145,7 +145,6 @@ export class ChildComponent implements OnInit {
         if (result.affectedRows > 0) {
           this.swalDialogSuccess
             .show().then((value) => {
-
               // reset data
               this.data = new Child();
               this.userGetChild();
@@ -173,13 +172,9 @@ export class ChildComponent implements OnInit {
 
     await this.userService.userUpdateChild(body).subscribe(
       result => {
-
-        console.log(result);
-
         if (result.affectedRows > 0) {
           this.swalDialogSuccess
             .show().then((value) => {
-
               // reset data
               this.data = new Child();
               this.userGetChild();
@@ -206,9 +201,6 @@ export class ChildComponent implements OnInit {
 
     await this.userService.userDeleteChild(obj).subscribe(
       result => {
-
-        console.log(result);
-
         if (result.affectedRows > 0) {
           this.swalDialogSuccess
             .show().then((value) => {
