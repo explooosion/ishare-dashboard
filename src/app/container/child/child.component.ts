@@ -50,7 +50,7 @@ export class ChildComponent implements OnInit {
     let valid = false;
     let body = {};
 
-    console.log();
+    console.log(this.data.childgender);
 
     if (Object.keys(this.data).length < 1) {
 
@@ -148,6 +148,7 @@ export class ChildComponent implements OnInit {
 
               // reset data
               this.data = new Child();
+              this.userGetChild();
               this.modelClose.nativeElement.click();
             });
         } else {
@@ -181,6 +182,7 @@ export class ChildComponent implements OnInit {
 
               // reset data
               this.data = new Child();
+              this.userGetChild();
               this.modelClose.nativeElement.click();
             });
         } else {

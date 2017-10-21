@@ -99,12 +99,12 @@
               <label class="control-label">性別:</label>
               <div class="form-check">
                 <label class="custom-control custom-radio">
-                  <input name="childgender" type="radio" value="男" class="custom-control-input" [ngModel]="data.childgender">
+                  <input name="childgender" type="radio" value="男" class="custom-control-input" [ngModel]="data.childgender" (ngModelChange)="data.childgender = $event">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">男生</span>
                 </label>
                 <label class="custom-control custom-radio">
-                  <input name="childgender" type="radio" value="女" class="custom-control-input" [ngModel]="data.childgender">
+                  <input name="childgender" type="radio" value="女" class="custom-control-input" [ngModel]="data.childgender" (ngModelChange)="data.childgender = $event">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">女生</span>
                 </label>
