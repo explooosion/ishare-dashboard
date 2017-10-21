@@ -11,12 +11,12 @@
   <div class="card mb-3">
     <div class="card-header">
       <i class="fa fa-users"></i> 店家列表 - 共 {{ datas.length }} 筆資料
-      <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modelAddStore">新增</button>
+      <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modelAddStore" (click)="data = []; isAddMode = true;">新增</button>
     </div>
 
     <div class="card-body">
-      <table class="table">
-        <thead class="thead-default">
+      <table class="table table-striped table-border table-button">
+        <thead>
           <tr>
             <th>#</th>
             <th>帳號</th>
@@ -26,11 +26,12 @@
             <th>電話</th>
             <th>統一編號</th>
             <th>店家類型</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngIf="isLoading" class="text-center">
-            <td colspan="7">
+            <td colspan="8">
               <i class="fa fa-spinner fa-3x fa-spin"></i>
             </td>
           </tr>
@@ -43,6 +44,12 @@
             <td>{{data.storetel}}</td>
             <td>{{data.storeein}}</td>
             <td>{{data.storetype}}</td>
+            <td class="text-right">
+              <swal #dialogDeleteError title="資料刪除失敗，請重新確認" type="error"></swal>
+              <swal #dialogStoreDelete title="確定要刪除？" type="question" [options]="{ showCancelButton: 'true' }" (confirm)="userDeleteStore(data)"></swal>
+              <button type="button" class="btn btn-info mr-2" (click)="userGetStoreById(data)" data-toggle="modal" data-target="#modelAddStore">編輯</button>
+              <button type="button" class="btn btn-danger mr-2" (click)="dialogStoreDelete.show()">刪除</button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -61,7 +68,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title" id="modelAddStoreLabel">新增店家</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button #modelClose type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
           </button>
@@ -70,47 +77,50 @@
           <form>
             <div class="form-group">
               <label class="control-label">帳號:</label>
-              <input type="text" class="form-control" name="storeusername" [(ngModel)]="storeusername" required>
+              <input type="text" class="form-control" name="storeusername" [(ngModel)]="data.storeusername" [readonly]="!isAddMode" required>
             </div>
             <div class="form-group">
               <label class="control-label">密碼:</label>
-              <input type="password" class="form-control" name="storepassword" [(ngModel)]="storepassword" required>
+              <input type="password" class="form-control" name="storepassword" [(ngModel)]="data.storepassword" required>
             </div>
             <div class="form-group">
               <label class="control-label">確認密碼:</label>
-              <input type="password" class="form-control" name="storepasswordRe" [(ngModel)]="storepasswordRe" required>
+              <input type="password" class="form-control" name="storepasswordRe" [(ngModel)]="data.storepasswordRe" required>
             </div>
             <div class="form-group">
               <label class="control-label">店名:</label>
-              <input type="text" class="form-control" name="storename" [(ngModel)]="storename" required>
+              <input type="text" class="form-control" name="storename" [(ngModel)]="data.storename" required>
             </div>
             <div class="form-group">
               <label class="control-label">地址:</label>
-              <input type="text" class="form-control" name="storeaddr" [(ngModel)]="storeaddr" required>
+              <input type="text" class="form-control" name="storeaddr" [(ngModel)]="data.storeaddr" required>
             </div>
             <div class="form-group">
               <label class="control-label">店長:</label>
-              <input type="text" class="form-control" name="storeadminstore" [(ngModel)]="storeadminstore" required>
+              <input type="text" class="form-control" name="storeadminstore" [(ngModel)]="data.storeadminstore" required>
             </div>
             <div class="form-group">
               <label class="control-label">電話:</label>
-              <input type="text" class="form-control" name="storetel" [(ngModel)]="storetel" required>
+              <input type="text" class="form-control" name="storetel" [(ngModel)]="data.storetel" required>
             </div>
             <div class="form-group">
               <label class="control-label">統一編號:</label>
-              <input type="text" class="form-control" name="storeein" [(ngModel)]="storeein" required>
+              <input type="text" class="form-control" name="storeein" [(ngModel)]="data.storeein" required>
             </div>
             <div class="form-group">
               <label class="control-label">店家類型:</label>
-              <input type="text" class="form-control" name="storetype" [(ngModel)]="storetype" required>
+              <input type="text" class="form-control" name="storetype" [(ngModel)]="data.storetype" required>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <swal #dialogSuccess title="新增成功" type="success"></swal>
+          <swal #dialogSuccess title="資料更新成功" type="success"></swal>
           <swal #dialogError title="資料錯誤，請重新確認" type="error"></swal>
-          <button type="button" class="btn btn-primary" (click)="userAddStore(modelAddStore);">儲存</button>
+          <swal #dialogUpdateError title="資料更新失敗，請重新確認" type="error"></swal>
+          <swal #dialogInsertError title="資料更新失敗，請重新確認" type="error"></swal>
+          <button type="button" class="btn btn-secondary" (click)="data = []">重填</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" (click)="userDataCheck();">儲存</button>
         </div>
       </div>
     </div>

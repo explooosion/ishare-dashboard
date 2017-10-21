@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../service/user/user.service';
 import { SwalComponent } from '@toverux/ngsweetalert2';
 
+import { Store } from '../../class/user/store';
 import { CheckLoginService } from 'app/service/common/check-login.service';
 
 @Component({
@@ -16,21 +17,16 @@ export class StoreComponent implements OnInit {
   @ViewChild('modelClose') modelClose: ElementRef;
   @ViewChild('dialogError') private swalDialogError: SwalComponent;
   @ViewChild('dialogSuccess') private swalDialogSuccess: SwalComponent;
+  @ViewChild('dialogUpdateError') private swalDialogUpdateError: SwalComponent;
+  @ViewChild('dialogInsertError') private swalDialogInsertError: SwalComponent;
+  @ViewChild('dialogDeleteError') private swalDialogDeleteError: SwalComponent;
 
-  public datas: any = [];
+  public datas: Store[] = [];       // 學生資料集合
+  public data: Store = new Store(); // 學生資料單筆(by username)
+  public isAddMode: Boolean = true; // 表單模式(新增/編輯)
+
   public page: number = 1;
   public isLoading: Boolean = true;
-
-  public storeusername: String = 'b01';
-  public storepassword: String = '123456';
-  public storepasswordRe: String = '123456';
-  public storename: String = '好米吉便當專賣';
-  public storeaddr: String = '台北市松山區民生東路五段36巷1號';
-  public storeadminstore: String = '張大東';
-  public storetel: String = '02-2768-9942';
-  public storeein: String = '1145671';
-  public storetype: String = '';
-  public storephoto: String = '';
 
   constructor(
     private router: Router,
@@ -43,6 +39,89 @@ export class StoreComponent implements OnInit {
     this.userGetStore();
   }
 
+
+  /**
+   * 資料欄位驗證
+   *
+   * @memberof StoreComponent
+   */
+  public async userDataCheck() {
+
+    let valid = false;
+    let body = {};
+
+    if (Object.keys(this.data).length < 1) {
+
+      this.swalDialogError
+        .show().then((value) => {
+          this.data.storepassword = '';
+          this.data.storepasswordRe = '';
+        });
+
+    } else if (
+      this.data.storepassword != this.data.storepasswordRe ||
+      this.data.storepassword == '' ||
+      this.data.storepasswordRe == ''
+    ) {
+
+      this.swalDialogError
+        .show().then((value) => {
+          this.data.storepassword = '';
+          this.data.storepasswordRe = '';
+        });
+
+    } else {
+
+      valid = true;
+
+      body = {
+        id: this.data.id,
+        storeusername: this.data.storeusername,
+        storepassword: this.data.storepassword,
+        storename: this.data.storename,
+        storeaddr: this.data.storeaddr,
+        storeadminstore: this.data.storeadminstore,
+        storetel: this.data.storetel,
+        storeein: this.data.storeein,
+        storetype: this.data.storetype
+      }
+    }
+
+    if (valid) {
+      if (this.isAddMode) {
+        this.userAddStore(body);    // 新增資料
+      } else {
+        this.userUpdateStore(body); // 更新資料
+      }
+    }
+  }
+
+
+  /**
+   * 取得店家資料 by username
+   *
+   * @param {Store} obj
+   * @memberof StoreComponent
+   */
+  public async userGetStoreById(obj: Store) {
+
+    this.data = this.datas.filter(
+      d => { return d.storeusername === obj.storeusername; }
+    )[0];  // this.data 非陣列（是 Store 物件），因此要取出[0]
+
+    // 編輯暫時先不用重新輸入密碼
+    this.data.storepasswordRe = this.data.storepassword;
+
+    // 修改表單模式
+    this.isAddMode = false;
+
+  }
+
+  /**
+   * 取得店家資料 all
+   *
+   * @memberof StoreComponent
+   */
   public async userGetStore() {
     await this.userService.userGetStore().subscribe(
       result => {
@@ -51,65 +130,84 @@ export class StoreComponent implements OnInit {
       });
   }
 
-  public async userAddStore(obj) {
 
-    console.log(obj);
+  /**
+   * 新增店家資料
+   *
+   * @memberof StoreComponent
+   */
+  public async userAddStore(body) {
 
-    if (this.storepassword != this.storepasswordRe) {
-      this.swalDialogError
-        .show().then((value) => {
-          this.storepassword = '';
-          this.storepasswordRe = '';
-        });
-    } else if (
-      this.storeusername == '' ||
-      this.storepassword == '' ||
-      this.storepasswordRe == '' ||
-      this.storename == '' ||
-      this.storeaddr == '' ||
-      this.storeadminstore == '' ||
-      this.storetel == '' ||
-      this.storeein == ''
-    ) {
-      this.swalDialogError
-        .show().then((value) => {
-          this.storepassword = '';
-          this.storepasswordRe = '';
-        });
-    } else {
-
-      let body = {
-        storeusername: this.storeusername,
-        storepassword: this.storepassword,
-        storename: this.storename,
-        storeaddr: this.storeaddr,
-        storeadminstore: this.storeadminstore,
-        storetel: this.storetel,
-        storeein: this.storeein,
-        storetype: this.storetype,
-        storephoto: this.storephoto
-      }
-
-      await this.userService.userAddStore(body).subscribe(
-        result => {
-          console.log(result);
-          if (result.affectedRows > 0) {
-            this.swalDialogSuccess
-              .show().then((value) => {
-                this.modelClose.nativeElement.click();
-              });
-          } else {
-            this.swalDialogError
-              .show().then((value) => {
-                this.storepassword = '';
-                this.storepasswordRe = '';
-              });
-          }
-
-        });
-
-    }
+    await this.userService.userAddStore(body).subscribe(
+      result => {
+        if (result.affectedRows > 0) {
+          this.swalDialogSuccess
+            .show().then((value) => {
+              // reset data
+              this.data = new Store();
+              this.userGetStore();
+              this.modelClose.nativeElement.click();
+            });
+        } else {
+          this.swalDialogInsertError
+            .show().then((value) => {
+              this.data.storepassword = '';
+              this.data.storepasswordRe = '';
+            });
+        }
+      });
 
   }
 
+
+  /**
+   * 更新店家資料
+   *
+   * @memberof StoreComponent
+   */
+  public async userUpdateStore(body) {
+
+    await this.userService.userUpdateStore(body).subscribe(
+      result => {
+        if (result.affectedRows > 0) {
+          this.swalDialogSuccess
+            .show().then((value) => {
+              // reset data
+              this.data = new Store();
+              this.userGetStore();
+              this.modelClose.nativeElement.click();
+            });
+        } else {
+          this.swalDialogUpdateError
+            .show().then((value) => {
+              this.data.storepassword = '';
+              this.data.storepasswordRe = '';
+            });
+        }
+      });
+
+  }
+
+  /**
+   * 刪除店家資料
+   *
+   * @memberof StoreComponent
+   */
+  public async userDeleteStore(obj: Store) {
+
+    await this.userService.userDeleteStore(obj).subscribe(
+      result => {
+        if (result.affectedRows > 0) {
+          this.swalDialogSuccess
+            .show().then((value) => {
+              this.userGetStore(); // reload
+              this.modelClose.nativeElement.click();
+            });
+        } else {
+          this.swalDialogDeleteError
+            .show();
+        }
+      });
+
+  }
 }
