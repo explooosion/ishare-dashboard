@@ -36,7 +36,7 @@
             <td>{{ data['recordchild']}}</td>
             <td>{{ data['recordstore']}}</td>
             <td>{{ data['recordpoint']}}</td>
-            <td>{{ data['recordtime']}}</td>
+            <td>{{ data['recordtime'] | date: 'yyyy/MM/dd HH:MM:ss' }}</td>
           </tr>
         </tbody>
       </table>

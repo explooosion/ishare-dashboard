@@ -17,9 +17,11 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('dialogSuccess') private swalDialogSuccess: SwalComponent;
   @ViewChild('dialogError') private swalDialogError: SwalComponent;
+  @ViewChild('dialogErrorGroup') private swalDialogErrorGroup: SwalComponent;
 
   public userId: String = 'jack123';
   public userPwd: String = 'jack321';
+  public logingroup: Number = 0;
 
   constructor(
     private router: Router,
@@ -32,23 +34,30 @@ export class LoginComponent implements OnInit {
 
   public async login() {
 
-    let body = {
-      userId: this.userId,
-      userPwd: this.userPwd,
-      logingroup: 3
+    if (this.logingroup == 0) {
+      this.swalDialogErrorGroup.show();
+    } else {
+
+      let body = {
+        userId: this.userId,
+        userPwd: this.userPwd,
+        logingroup: this.logingroup
+      }
+
+      await this.userService.userLogin(body).subscribe(
+        result => {
+          if (result[0]) {
+            Cookie.set('dashboardLogin', JSON.stringify(result[0]));
+            this.swalDialogSuccess
+              .show().then((value) => { location.href = "./dashboard"; });
+          } else {
+            this.swalDialogError.show();
+          }
+        });
+
     }
 
-    await this.userService.userLogin(body).subscribe(
 
-      result => {
-        if (result[0]) {
-          Cookie.set('dashboardLogin', JSON.stringify(result[0]));
-          this.swalDialogSuccess
-            .show().then((value) => { location.href = "./dashboard"; });
-        } else {
-          this.swalDialogError.show();
-        }
-      });
   }
 
 }
