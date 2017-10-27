@@ -14,18 +14,19 @@ const options = {
 replace(options)
   .then(changes => {
     console.log('Fix base success:', changes.join(', '));
+
+    copy(['dist/*.*', '!dist/*.html'], `../server/src/public/${_project}/`, (err, file) => {
+      if (err) throw err
+      console.log('Copy JS/CSS complete.');
+
+    });
+
+    copy('dist/*.html', '../server/src/view/', (err, file) => {
+      if (err) throw err
+      console.log('Copy HTML complete.')
+    });
+
   })
   .catch(error => {
     console.error('Fix base error:', error);
   });
-
-copy(['dist/*.*', '!dist/*.html'], `../server/src/public/${_project}/`, (err, file) => {
-  if (err) throw err
-  console.log('Copy JS/CSS complete.');
-
-});
-
-copy('dist/*.html', '../server/src/view/', (err, file) => {
-  if (err) throw err
-  console.log('Copy HTML complete.')
-});
