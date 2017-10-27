@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
+import { enableProdMode } from '@angular/core';
+
 // Plugin
 import { ChartsModule } from 'ng2-charts';
 import { SweetAlert2Module } from '@toverux/ngsweetalert2';
@@ -23,6 +25,8 @@ import { AccountComponent } from './container/account/account.component';
 import { TimerComponent } from './container/timer/timer.component';
 import { LogComponent } from './container/log/log.component';
 import { LoginComponent } from './container/login/login.component';
+
+enableProdMode();
 
 @NgModule({
   declarations: [

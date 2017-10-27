@@ -21,8 +21,8 @@ export class StoreComponent implements OnInit {
   @ViewChild('dialogInsertError') private swalDialogInsertError: SwalComponent;
   @ViewChild('dialogDeleteError') private swalDialogDeleteError: SwalComponent;
 
-  public datas: Store[] = [];       // 學生資料集合
-  public data: Store = new Store(); // 學生資料單筆(by username)
+  public datas: any[] = [];       // 學生資料集合
+  public data: any = new Store(); // 學生資料單筆(by username)
   public isAddMode: Boolean = true; // 表單模式(新增/編輯)
 
   public page: number = 1;

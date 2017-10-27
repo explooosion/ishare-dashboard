@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { UserService } from '../../service/user/user.service';
 import { SwalComponent } from '@toverux/ngsweetalert2';
 
-import { Child } from '../../class/user/child';
 import { CheckLoginService } from 'app/service/common/check-login.service';
 import { async } from '@angular/core/testing';
+
+import { Child } from '../../class/user/child';
 
 @Component({
   selector: 'app-child',
@@ -22,8 +23,8 @@ export class ChildComponent implements OnInit {
   @ViewChild('dialogInsertError') private swalDialogInsertError: SwalComponent;
   @ViewChild('dialogDeleteError') private swalDialogDeleteError: SwalComponent;
 
-  public datas: Child[] = [];       // 學生資料集合
-  public data: Child = new Child(); // 學生資料單筆(by username)
+  public datas: any[] = [];       // 學生資料集合
+  public data: any = new Child(); // 學生資料單筆(by username)
   public isAddMode: Boolean = true; // 表單模式(新增/編輯)
 
   public page: number = 1;          // 當前頁碼
@@ -49,8 +50,6 @@ export class ChildComponent implements OnInit {
 
     let valid = false;
     let body = {};
-
-    console.log(this.data.childgender);
 
     if (Object.keys(this.data).length < 1) {
 
@@ -146,7 +145,7 @@ export class ChildComponent implements OnInit {
           this.swalDialogSuccess
             .show().then((value) => {
               // reset data
-              this.data = new Child();
+              this.data = null;
               this.userGetChild();
               this.modelClose.nativeElement.click();
             });
@@ -176,7 +175,7 @@ export class ChildComponent implements OnInit {
           this.swalDialogSuccess
             .show().then((value) => {
               // reset data
-              this.data = new Child();
+              this.data = null;
               this.userGetChild();
               this.modelClose.nativeElement.click();
             });
