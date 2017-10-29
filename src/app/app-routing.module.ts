@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './container/home/home.component';
 import { ChildComponent } from './container/child/child.component';
 import { StoreComponent } from './container/store/store.component';
+import { TeacherComponent } from './container/teacher/teacher.component';
 import { RecordComponent } from './container/record/record.component';
 import { AccountComponent } from './container/account/account.component';
 import { TimerComponent } from './container/timer/timer.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'child', component: ChildComponent },
   { path: 'store', component: StoreComponent },
+  { path: 'teacher', component: TeacherComponent },
   { path: 'record', component: RecordComponent },
   { path: 'account', component: AccountComponent },
   { path: 'timer', component: TimerComponent },

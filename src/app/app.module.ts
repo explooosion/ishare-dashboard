@@ -18,6 +18,7 @@ import { CheckLoginService } from 'app/service/common/check-login.service';
 import { AppComponent } from './app.component';
 import { NavComponent } from './container/nav/nav.component';
 import { HomeComponent } from './container/home/home.component';
+import { TeacherComponent } from './container/teacher/teacher.component';
 import { ChildComponent } from './container/child/child.component';
 import { StoreComponent } from './container/store/store.component';
 import { RecordComponent } from './container/record/record.component';
@@ -39,7 +40,8 @@ enableProdMode();
     AccountComponent,
     TimerComponent,
     LogComponent,
-    LoginComponent
+    LoginComponent,
+    TeacherComponent
   ],
   imports: [
     BrowserModule,

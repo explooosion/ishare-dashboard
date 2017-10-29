@@ -48,8 +48,10 @@ export class LoginComponent implements OnInit {
         result => {
           if (result[0]) {
             Cookie.set('dashboardLogin', JSON.stringify(result[0]));
-            this.swalDialogSuccess
-              .show().then((value) => { location.href = "./dashboard"; });
+            this.swalDialogSuccess.show();
+            setTimeout(() => {
+              location.href = "./dashboard";
+            }, 1200);
           } else {
             this.swalDialogError.show();
           }

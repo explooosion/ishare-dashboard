@@ -135,4 +135,58 @@ export class UserService {
       });
   }
 
+  /**
+ * 教職員資料取得
+ *
+ * @returns
+ * @memberof UserService
+ */
+  public userGetTeacher() {
+    return this.http.get('/api/teacher')
+      .map((res) => {
+        return res.json() || {}
+      });
+  }
+
+  /**
+   * 教職員資料新增
+   *
+   * @param {object} body
+   * @returns
+   * @memberof UserService
+   */
+  public userAddTeacher(body: object) {
+    return this.http.post('/api/teacher/add', body)
+      .map((res) => {
+        return res.json() || {}
+      });
+  }
+
+  /**
+   * 教職員資料更新
+   *
+   * @param {object} body
+   * @returns
+   * @memberof UserService
+   */
+  public userUpdateTeacher(body: object) {
+    return this.http.post('/api/teacher/update', body)
+      .map((res) => {
+        return res.json() || {}
+      });
+  }
+
+  /**
+   * 教職員資料刪除
+   *
+   * @param {object} body
+   * @returns
+   * @memberof UserService
+   */
+  public userDeleteTeacher(body: object) {
+    return this.http.post('/api/teacher/delete', body)
+      .map((res) => {
+        return res.json() || {}
+      });
+  }
 }

@@ -25,6 +25,11 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active': 'child'==sideActive }" href="#" [routerLink]="['teacher']" (click)="sidebarActive($event)">
+            <i class="fa fa-fw fa-user"></i>教職員管理
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" [ngClass]="{'active': 'record'==sideActive }" href="#" [routerLink]="['record']" (click)="sidebarActive($event)">
             <i class=" fa fa-fw fa-credit-card "></i>點數管理
           </a>
