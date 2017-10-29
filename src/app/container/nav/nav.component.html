@@ -10,46 +10,57 @@
       <ul class="navbar-nav nav-pills flex-column">
         <li class="nav-item">
           <a class="nav-link" [ngClass]="{'active': 'home'==sideActive }" href="#" [routerLink]="['home']" (click)="sidebarActive($event)">
-            <i class="fa fa-fw fa-home"></i>首頁
+            <i class="fa fa-fw fa-thumb-tack"></i>資訊
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'active': 'child'==sideActive }" href="#" [routerLink]="['child']" (click)="sidebarActive($event)">
-            <i class="fa fa-fw fa-users"></i>學童管理
-          </a>
+          <a class="nav-link nav-link-collapse collapsed" [ngClass]="{ 'active': 'carousel'==sideActive }" data-toggle="collapse" href="#collapsePage"
+            aria-expanded="false">
+            <i class="fa fa-fw fa-file-text-o"></i>頁面管理</a>
+          <ul class="sidebar-sub collapse" id="collapsePage" aria-expanded="false">
+            <li>
+              <a [ngClass]="{'active': 'carousel'==sideActive }" href="#" [routerLink]="['carousel']" (click)="sidebarActive($event)">輪播圖</a>
+            </li>
+          </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'active': 'store'==sideActive }" href="#" [routerLink]="['store']" (click)="sidebarActive($event)">
-            <i class="fa fa-fw fa-university"></i>店家管理
-          </a>
+          <a class="nav-link nav-link-collapse collapsed" [ngClass]="{ 'active': 'child'==sideActive || 'store'==sideActive || 'teacher'==sideActive }"
+            data-toggle="collapse" href="#collapseUsers" aria-expanded="false ">
+            <i class="fa fa-fw fa-users"></i>帳號管理</a>
+          <ul class="sidebar-sub collapse" id="collapseUsers" aria-expanded="false">
+            <li>
+              <a [ngClass]="{'active': 'child'==sideActive }" href="#" [routerLink]="['child']" (click)="sidebarActive($event)">學童</a>
+            </li>
+            <li>
+              <a [ngClass]="{'active': 'store'==sideActive }" href="#" [routerLink]="['store']" (click)="sidebarActive($event)">店家</a>
+            </li>
+            <li>
+              <a [ngClass]="{'active': 'teacher'==sideActive }" href="#" [routerLink]="['teacher']" (click)="sidebarActive($event)">教職員</a>
+            </li>
+          </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'active': 'teacher'==sideActive }" href="#" [routerLink]="['teacher']" (click)="sidebarActive($event)">
-            <i class="fa fa-fw fa-user"></i>教職員管理
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'active': 'record'==sideActive }" href="#" [routerLink]="['record']" (click)="sidebarActive($event)">
+          <a class="nav-link" [ngClass]="{ 'active': 'record'==sideActive }" href="#" [routerLink]="['record']" (click)="sidebarActive($event)">
             <i class=" fa fa-fw fa-credit-card "></i>點數管理
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-link-collapse collapsed" [ngClass]="{'active': 'account'==sideActive || 'timer'==sideActive }" data-toggle="collapse"
+          <a class="nav-link nav-link-collapse collapsed" [ngClass]="{'active': 'admin'==sideActive || 'timer'==sideActive }" data-toggle="collapse"
             href="#collapseSystem" aria-expanded="false ">
-            <i class="fa fa-fw fa-cog "></i> 系統參數</a>
+            <i class="fa fa-fw fa-cog"></i>設定</a>
           <ul class="sidebar-sub collapse" id="collapseSystem" aria-expanded="false">
             <li>
-              <a [ngClass]="{'active': 'account'==sideActive }" href="#" [routerLink]="['account']" (click)="sidebarActive($event)">系統帳戶管理</a>
+              <a [ngClass]="{'active': 'admin'==sideActive }" href="#" [routerLink]="['admin']" (click)="sidebarActive($event)">總管理員</a>
             </li>
             <li>
-              <a [ngClass]="{'active': 'timer'==sideActive }" href="#" [routerLink]="['timer']" (click)="sidebarActive($event)">時段管理</a>
+              <a [ngClass]="{'active': 'timer'==sideActive }" href="#" [routerLink]="['timer']" (click)="sidebarActive($event)">用餐時段</a>
             </li>
           </ul>
         </li>
         <li class="nav-item ">
           <a class="nav-link" [ngClass]="{'active': 'log'==sideActive }" href="#" [routerLink]="['log']" (click)="sidebarActive($event)">
-            <i class="fa fa-fw fa-calendar"></i>系統日誌
+            <i class="fa fa-fw fa-calendar"></i>日誌
           </a>
         </li>
       </ul>

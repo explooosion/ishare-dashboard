@@ -46,6 +46,7 @@
   font-size: 16px;
   color: hsla(0, 0%, 100%, .5);
   border-radius: 0;
+  letter-spacing: 0.4px;
 }
 
 .sidebar .nav-link:hover {
@@ -89,6 +90,7 @@
   color: #636c72;
   font-size: 16px;
   text-decoration: unset;
+  letter-spacing: 0.4px;
 }
 
 .sidebar-sub>li>a:hover {
