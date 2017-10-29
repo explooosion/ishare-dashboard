@@ -22,10 +22,11 @@ import { TeacherComponent } from './container/teacher/teacher.component';
 import { ChildComponent } from './container/child/child.component';
 import { StoreComponent } from './container/store/store.component';
 import { RecordComponent } from './container/record/record.component';
-import { AccountComponent } from './container/account/account.component';
 import { TimerComponent } from './container/timer/timer.component';
 import { LogComponent } from './container/log/log.component';
 import { LoginComponent } from './container/login/login.component';
+import { CarouselComponent } from './container/carousel/carousel.component';
+import { AdminComponent } from './container/admin/admin.component';
 
 enableProdMode();
 
@@ -37,11 +38,12 @@ enableProdMode();
     ChildComponent,
     StoreComponent,
     RecordComponent,
-    AccountComponent,
     TimerComponent,
     LogComponent,
     LoginComponent,
-    TeacherComponent
+    TeacherComponent,
+    CarouselComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
