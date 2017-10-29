@@ -143,8 +143,7 @@ export class StoreComponent implements OnInit {
         if (result.affectedRows > 0) {
           this.swalDialogSuccess
             .show().then((value) => {
-              // reset data
-              this.data = new Store();
+              // reset data 
               this.userGetStore();
               this.modelClose.nativeElement.click();
             });
@@ -172,8 +171,7 @@ export class StoreComponent implements OnInit {
         if (result.affectedRows > 0) {
           this.swalDialogSuccess
             .show().then((value) => {
-              // reset data
-              this.data = new Store();
+              // reset data 
               this.userGetStore();
               this.modelClose.nativeElement.click();
             });
