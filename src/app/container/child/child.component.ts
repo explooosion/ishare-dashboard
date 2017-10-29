@@ -144,8 +144,7 @@ export class ChildComponent implements OnInit {
         if (result.affectedRows > 0) {
           this.swalDialogSuccess
             .show().then((value) => {
-              // reset data
-              this.data = null;
+              // reset data 
               this.userGetChild();
               this.modelClose.nativeElement.click();
             });
@@ -174,8 +173,7 @@ export class ChildComponent implements OnInit {
         if (result.affectedRows > 0) {
           this.swalDialogSuccess
             .show().then((value) => {
-              // reset data
-              this.data = null;
+              // reset data 
               this.userGetChild();
               this.modelClose.nativeElement.click();
             });
