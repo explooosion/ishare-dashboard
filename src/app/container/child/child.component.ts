@@ -106,9 +106,13 @@ export class ChildComponent implements OnInit {
    */
   public async userGetChildById(obj: Child) {
 
-    // this.data = this.datas.filter(
-    //   d => { return d.childusername === obj.childusername; }
-    // )[0];
+    this.data = this.datas.filter(
+      (value, index, array) => {
+        return value.childusername === obj.childusername
+      }
+    )[0];
+
+    console.log(this.data);
     // this.data 非陣列（是 Child 物件），因此要取出[0]
 
     // 老師編輯暫時先不用重新輸入密碼

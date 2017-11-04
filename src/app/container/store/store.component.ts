@@ -105,9 +105,11 @@ export class StoreComponent implements OnInit {
    */
   public async userGetStoreById(obj: Store) {
 
-    // this.data = this.datas.filter(
-    //   d => { return d.storeusername === obj.storeusername; }
-    // )[0];
+    this.data = this.datas.filter(
+      (value, index, array) => {
+        return value.storeusername === obj.storeusername;
+      }
+    )[0];
     // this.data 非陣列（是 Store 物件），因此要取出[0]
 
     // 編輯暫時先不用重新輸入密碼

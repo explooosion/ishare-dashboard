@@ -103,9 +103,11 @@ export class TeacherComponent implements OnInit {
    */
   public async userGetTeacherById(obj: Teacher) {
 
-    // this.data = this.datas.filter(
-    //   d => { return d.teacherusername === obj.teacherusername; }
-    // )[0];
+    this.data = this.datas.filter(
+      (value, index, array) => {
+        return value.teacherusername === obj.teacherusername
+      }
+    )[0];
     // this.data 非陣列（是 Teacher 物件），因此要取出[0]
 
     // 老師編輯暫時先不用重新輸入密碼
