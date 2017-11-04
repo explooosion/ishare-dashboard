@@ -11,7 +11,7 @@ import { CheckLoginService } from 'app/service/common/check-login.service';
 export class RecordComponent implements OnInit {
 
   public datas: any = [];
-  public page: number = 1;
+  public page: Number = 1;
   public isLoading: Boolean = true;
 
   constructor(

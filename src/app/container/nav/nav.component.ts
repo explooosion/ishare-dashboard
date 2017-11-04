@@ -33,9 +33,9 @@ export class NavComponent implements OnInit {
   public reloadRedirect() {
     this.isLogin = JSON.parse(Cookie.get('dashboardLogin'));
     if (!this.isLogin) {
-      this.router.navigate(["/login"]);
+      this.router.navigate(['/login']);
     } else {
-      this.router.navigate(["/home"]);
+      this.router.navigate(['/home']);
     }
   }
 

@@ -25,7 +25,7 @@ export class StoreComponent implements OnInit {
   public data: any = new Store(); // 學生資料單筆(by username)
   public isAddMode: Boolean = true; // 表單模式(新增/編輯)
 
-  public page: number = 1;
+  public page: Number = 1;
   public isLoading: Boolean = true;
 
   constructor(
@@ -59,9 +59,9 @@ export class StoreComponent implements OnInit {
         });
 
     } else if (
-      this.data.storepassword != this.data.storepasswordRe ||
-      this.data.storepassword == '' ||
-      this.data.storepasswordRe == ''
+      this.data.storepassword !== this.data.storepasswordRe ||
+      this.data.storepassword === '' ||
+      this.data.storepasswordRe === ''
     ) {
 
       this.swalDialogError
@@ -105,9 +105,10 @@ export class StoreComponent implements OnInit {
    */
   public async userGetStoreById(obj: Store) {
 
-    this.data = this.datas.filter(
-      d => { return d.storeusername === obj.storeusername; }
-    )[0];  // this.data 非陣列（是 Store 物件），因此要取出[0]
+    // this.data = this.datas.filter(
+    //   d => { return d.storeusername === obj.storeusername; }
+    // )[0];
+    // this.data 非陣列（是 Store 物件），因此要取出[0]
 
     // 編輯暫時先不用重新輸入密碼
     this.data.storepasswordRe = this.data.storepassword;
@@ -143,7 +144,7 @@ export class StoreComponent implements OnInit {
         if (result.affectedRows > 0) {
           this.swalDialogSuccess
             .show().then((value) => {
-              // reset data 
+              // reset data
               this.userGetStore();
               this.modelClose.nativeElement.click();
             });
@@ -171,7 +172,7 @@ export class StoreComponent implements OnInit {
         if (result.affectedRows > 0) {
           this.swalDialogSuccess
             .show().then((value) => {
-              // reset data 
+              // reset data
               this.userGetStore();
               this.modelClose.nativeElement.click();
             });

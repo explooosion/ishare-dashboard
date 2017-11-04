@@ -27,7 +27,7 @@ export class ChildComponent implements OnInit {
   public data: any = new Child(); // 學生資料單筆(by username)
   public isAddMode: Boolean = true; // 表單模式(新增/編輯)
 
-  public page: number = 1;          // 當前頁碼
+  public page: Number = 1;          // 當前頁碼
   public isLoading: Boolean = true; // 是否載入中
 
   constructor(
@@ -60,9 +60,9 @@ export class ChildComponent implements OnInit {
         });
 
     } else if (
-      this.data.childpassword != this.data.childpasswordRe ||
-      this.data.childpassword == '' ||
-      this.data.childpasswordRe == ''
+      this.data.childpassword !== this.data.childpasswordRe ||
+      this.data.childpassword === '' ||
+      this.data.childpasswordRe === ''
     ) {
 
       this.swalDialogError
@@ -106,9 +106,10 @@ export class ChildComponent implements OnInit {
    */
   public async userGetChildById(obj: Child) {
 
-    this.data = this.datas.filter(
-      d => { return d.childusername === obj.childusername; }
-    )[0];  // this.data 非陣列（是 Child 物件），因此要取出[0]
+    // this.data = this.datas.filter(
+    //   d => { return d.childusername === obj.childusername; }
+    // )[0];
+    // this.data 非陣列（是 Child 物件），因此要取出[0]
 
     // 老師編輯暫時先不用重新輸入密碼
     this.data.childpasswordRe = this.data.childpassword;
@@ -144,7 +145,6 @@ export class ChildComponent implements OnInit {
         if (result.affectedRows > 0) {
           this.swalDialogSuccess
             .show().then((value) => {
-              // reset data 
               this.userGetChild();
               this.modelClose.nativeElement.click();
             });
@@ -173,7 +173,6 @@ export class ChildComponent implements OnInit {
         if (result.affectedRows > 0) {
           this.swalDialogSuccess
             .show().then((value) => {
-              // reset data 
               this.userGetChild();
               this.modelClose.nativeElement.click();
             });

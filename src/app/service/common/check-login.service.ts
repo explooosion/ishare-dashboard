@@ -19,7 +19,7 @@ export class CheckLoginService {
     this.isLogin = JSON.parse(Cookie.get('dashboardLogin'));
 
     if (!this.isLogin) {
-      this.router.navigate(["/login"]);
+      this.router.navigate(['/login']);
     }
   }
 }

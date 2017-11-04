@@ -27,7 +27,7 @@ export class TeacherComponent implements OnInit {
   public data: any = new Teacher(); // 教職員資料單筆(by username)
   public isAddMode: Boolean = true; // 表單模式(新增/編輯)
 
-  public page: number = 1;          // 當前頁碼
+  public page: Number = 1;          // 當前頁碼
   public isLoading: Boolean = true; // 是否載入中
 
   constructor(
@@ -60,9 +60,9 @@ export class TeacherComponent implements OnInit {
         });
 
     } else if (
-      this.data.teacherpassword != this.data.teacherpasswordRe ||
-      this.data.teacherpassword == '' ||
-      this.data.teacherpasswordRe == ''
+      this.data.teacherpassword !== this.data.teacherpasswordRe ||
+      this.data.teacherpassword === '' ||
+      this.data.teacherpasswordRe === ''
     ) {
 
       this.swalDialogError
@@ -103,9 +103,10 @@ export class TeacherComponent implements OnInit {
    */
   public async userGetTeacherById(obj: Teacher) {
 
-    this.data = this.datas.filter(
-      d => { return d.teacherusername === obj.teacherusername; }
-    )[0];  // this.data 非陣列（是 Teacher 物件），因此要取出[0]
+    // this.data = this.datas.filter(
+    //   d => { return d.teacherusername === obj.teacherusername; }
+    // )[0];
+    // this.data 非陣列（是 Teacher 物件），因此要取出[0]
 
     // 老師編輯暫時先不用重新輸入密碼
     this.data.teacherpasswordRe = this.data.teacherpassword;
@@ -141,7 +142,7 @@ export class TeacherComponent implements OnInit {
         if (result.affectedRows > 0) {
           this.swalDialogSuccess
             .show().then((value) => {
-              // reset data 
+              // reset data
               this.userGetTeacher();
               this.modelClose.nativeElement.click();
             });
@@ -169,7 +170,7 @@ export class TeacherComponent implements OnInit {
         if (result.affectedRows > 0) {
           this.swalDialogSuccess
             .show().then((value) => {
-              // reset data 
+              // reset data
               this.userGetTeacher();
               this.modelClose.nativeElement.click();
             });

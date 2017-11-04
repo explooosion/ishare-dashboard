@@ -34,11 +34,11 @@ export class LoginComponent implements OnInit {
 
   public async login() {
 
-    if (this.logingroup == 0) {
+    if (this.logingroup === 0) {
       this.swalDialogErrorGroup.show();
     } else {
 
-      let body = {
+      const body = {
         userId: this.userId,
         userPwd: this.userPwd,
         logingroup: this.logingroup
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
             Cookie.set('dashboardLogin', JSON.stringify(result[0]));
             this.swalDialogSuccess.show();
             setTimeout(() => {
-              location.href = "./dashboard";
+              location.href = './dashboard';
             }, 1200);
           } else {
             this.swalDialogError.show();

@@ -14,7 +14,7 @@ export class LogComponent implements OnInit {
 
   public datas: any = [];
 
-  public page: number = 1;          // 當前頁碼
+  public page: Number = 1;          // 當前頁碼
   public isLoading: Boolean = true; // 是否載入中
 
   constructor(
