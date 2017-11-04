@@ -21,3 +21,24 @@ npm install
 ```bash
 ng sereve
 ```
+
+## IV、Build
+
+```bash
+npm run build
+```
+
+## V、TSlint
+
+```bash
+npm run lint
+```
+
+## VI、Deploy
+
+1. build your project first.
+2. deploy dist to server project  
+
+```bash
+npm run deploy
+```
