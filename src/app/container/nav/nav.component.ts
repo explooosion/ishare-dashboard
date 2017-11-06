@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { SwalComponent } from '@toverux/ngsweetalert2';
 import { CheckLoginService } from 'app/service/common/check-login.service';
@@ -19,7 +19,15 @@ export class NavComponent implements OnInit {
   constructor(
     private router: Router,
     private checkloginService: CheckLoginService
-  ) { }
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; }
+    this.router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd) {
+        this.router.navigated = false;
+        window.scrollTo(0, 0);
+      }
+    });
+  }
 
   ngOnInit() {
     this.reloadRedirect();
